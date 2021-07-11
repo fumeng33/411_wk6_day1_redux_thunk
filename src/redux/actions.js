@@ -14,12 +14,7 @@ export const removeCar = (index) => {
     };
 };
 
-// export const deleteMake = (index) => {
-//     return {
-//         type: 'DELETE_MAKE',
-//         value: index
-//     }
-// }
+
 
 {/* fetchMakes */ }
 
@@ -36,3 +31,11 @@ export const fetchMakes = () => {
     });
 };
 };
+
+
+export const removeMake = (index) => {
+    return {
+        type: 'REMOVE_MAKE',
+        value: index
+    }
+}

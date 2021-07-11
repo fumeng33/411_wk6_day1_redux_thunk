@@ -1,23 +1,8 @@
 import React from 'react'
-import { Button, Table, TableHead, TableBody, TableRow, TableCell, Container } from 'material-ui/core'
-import { MoreVert } from '@material-ui/icons';
+import { Button, Table, TableHead, TableBody, TableRow, TableCell, Container } from '@material-ui/core';
 
 const Import = (props) => {
     // fill out this component
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl)
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const options = [ 'delete'];
-
-
     return (
         <Container>
             <br />
@@ -40,29 +25,19 @@ const Import = (props) => {
                 </TableHead>
 
                 <TableBody>
-                    {props.makes.map((make, index) => (
-                        <TableRow key={make.id}>
-                            <TableCell component='th' scope='row'>
-                                {make.MakeId}
-                            </TableCell>
-
-                            <TableCell>{make['MakeName']}</TableCell>
-                            <TableCell>{make['VehicleTypeName']}</TableCell>
-                            <TableCell>
-                                <Meau index={index} />
-                            </TableCell>
-                        </TableRow>
-                    ))};
+                    {props.makes.map((make, index) => {
+                        return (
+                            <TableRow key={index}>
+                                <TableCell>{make.MakeId}</TableCell>
+                                <TableCell>{make.MakeName}</TableCell>
+                                <TableCell>
+                                    <Button aria-controls={`${index}-simple-menu`} aria-haspopup='true' onClick={() => props.removeMake(index)}>DELETE</Button>
+                                </TableCell>
+                            </TableRow>
+                        )
+                    })};
                 </TableBody>
             </Table>
-
-            <Menu id="long-menu" anchorEl={anchorEl} keepMounted open={open} onClose={handleClose}>
-				{options.map((option) => (
-					<MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-						{option}
-					</MenuItem>
-				))};
-			</Menu>
         </Container>
     );
 };
